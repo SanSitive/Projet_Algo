@@ -1,0 +1,1 @@
+Ligne 26 protocole : checkPiece -> Changement variable en Piece
