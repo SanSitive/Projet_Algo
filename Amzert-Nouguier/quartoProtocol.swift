@@ -3,7 +3,8 @@ import Foundation
 protocol QuartoProtocol: Sequence {
 	//coordonnées en (y,x)
 	associatedtype Coordinate = (Int,Int)
-	associatedtype Iterator = QuartoIteratorProtocol
+	associatedtype QuartoIterator = IteratorProtocol
+	//associatedtype Iterator = QuartoIteratorProtocol
 
 	//Initialise le plateau, toutes les positions sont vides et initialise toutes les pièces disponibles
 	//Pré : _
@@ -64,7 +65,7 @@ protocol QuartoProtocol: Sequence {
 	//Renvoie un itérateur sur le plateau
 	//Pré : _
 	//Post : _
-	func makeIterator() -> Iterator
+	func makeIterator() -> QuartoIterator
 
 	//Renvoie une string qui représente une ligne du plateau de jeux
 	//Pré : _
@@ -72,7 +73,7 @@ protocol QuartoProtocol: Sequence {
 	func printBoard(elt: [Piece?]) -> String
 }
 
-//Itère sur une ligne de quarto
+/*//Itère sur une ligne de quarto
 protocol QuartoIteratorProtocol:IteratorProtocol, Sequence {
 	
 	init()
@@ -81,4 +82,4 @@ protocol QuartoIteratorProtocol:IteratorProtocol, Sequence {
 	//Pré : _
 	//Post : _
 	mutating func next() -> [Piece?]
-}
+}*/

@@ -52,10 +52,16 @@ func display(game: Quarto) {
 	var i = 0
 	print("   |   0   |   1   |   2   |   3   |")
 	print("------------------------------------")
+
 	for elt in game {
 		print("\(i) ", terminator: " | ")
 		for item in 0..<elt.count {
-			print(getDisplayOf(piece: elt[item]), terminator: " | ")
+			if let p = elt[item] {
+				print(getDisplayOf(piece: p), terminator: " | ")
+			}
+			else {
+				print("    ", terminator: " | ")
+			}
 		}
 		print()
 		print("------------------------------------")
@@ -73,6 +79,7 @@ func getDisplayOf(piece:Piece) -> String {
 	else { txt += "E" } //Empty
 	if piece.square { txt += "S"} //Square
 	else { txt += "R" } //Round
+	return txt
 }
 
 
