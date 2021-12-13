@@ -60,7 +60,7 @@ func display(game: Quarto) {
 				print(getDisplayOf(piece: p), terminator: " | ")
 			}
 			else {
-				print("    ", terminator: " | ")
+				print("     ", terminator: " | ")
 			}
 		}
 		print()

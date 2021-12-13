@@ -310,7 +310,7 @@ struct QuartoIterator:IteratorProtocol, Sequence {
 	//Pré : _
 	//Post : _
 	mutating func next() -> [Piece?]? {
-        guard self.current + 1 == self.lignes.count else { return nil }
+        guard self.current + 1 <= self.lignes.count else { return nil }
         self.current += 1
         return self.lignes[self.current - 1]
     }
