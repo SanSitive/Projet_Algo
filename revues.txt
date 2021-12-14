@@ -1,11 +1,18 @@
-Ligne 26 quartoProtocole : checkPiece -> Changement variable en Piece, et fonctoion un peu inutile
+Ligne 26 quartoProtocole : checkPiece
+ - Changement du type du paramètre de type Coordonnées pour le type Piece
+ - Après discution avec les spécificateurs, c'était un oubli lorsqu'ils ont modifié la fonction
 
-Ligne 76 quartoProtocol, protocol de l'itérateur inutile, car ne peut pas être complet 
-(nécessite dans le init le type de la structure de données en paramètre)
+Ligne 76 quartoProtocol : protocol de l'itérateur
+ - Le protocole n'est pas utile car il reprend celui de IteratorProtocol (on peut compiler en le mettant en commentaire)
+ - Peut-être qu'il a été indiqué pour nous spécifié de coder ce protocole, mais nous pouvions déjà le deviner avec la présence de la fonction makeIterator
 
-Ligne 6 associatedtype Iterator = QuartoIteratorProtocol -> associatedtype QuartoIterator = IteratorProtocol
-et du coup la fonction makeIterator
+Ligne 6 quartoProtocle : associatedtype Iterator = QuartoIteratorProtocol
+ - Nous avons modifié cette ligne par : associatedtype QuartoIterator = IteratorProtocol
+ - car il s'appelait Iterator, comme le type de base, ce qui provoquait une ambiguïté
 
-Ligne 72 main : getDisplayOf  ajouter un return
-display(game: Quarto) main -> ajout d'un if/else dans le cas où il n'y pas de pièce sur la case à afficher, et ajout d'un espace
-lors de l'écriture d'une pièce
+Ligne 72 main : getDisplayOf
+ - Ajout de return txt qui avait été oublié
+
+Ligne 51 main : display(game: Quarto)
+ - Ajout d'un if/else dans le cas où il n'y pas de pièce sur la case à afficher
+ - Ajout d'un espace supplémentaire lors de l'écriture d'une pièce, car ce n'était pas aligné
