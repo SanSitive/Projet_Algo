@@ -119,7 +119,7 @@ struct Quarto : QuartoProtocol {
                 caseVide = true
             }
             c += 1
-        } //Arret : c >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
+        } //Arret : c >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièces impossible)
 
         if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
             res = (Coordinate(ligne, 0), Coordinate(ligne, 3))
@@ -152,7 +152,7 @@ struct Quarto : QuartoProtocol {
                 caseVide = true
             }
             l += 1
-        } //Arret : l >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
+        } //Arret : l >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièces impossible)
 
         if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
             res = (Coordinate(0, colonne), Coordinate(3, colonne))
@@ -188,7 +188,7 @@ struct Quarto : QuartoProtocol {
                     }
                     else {
                         caseVide = true
-                    } //Arret : i >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
+                    } //Arret : i >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièces impossible)
                     i += 1
                 }
                 if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
@@ -206,7 +206,7 @@ struct Quarto : QuartoProtocol {
                     }
                     else {
                         caseVide = true
-                    } //Arret : i >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
+                    } //Arret : i >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièces impossible)
                     i += 1
                 }
                 if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
@@ -218,6 +218,8 @@ struct Quarto : QuartoProtocol {
         return res
     }
 
+    //Vérifie pour chaque tableau si la caractéristique est commune
+    //Post : renvoie true si au moins une est commune, false sinon
     func existAlign(tabTall : [Bool], tabDark : [Bool], tabFull : [Bool], tabSquare : [Bool]) -> Bool {
         let boolTall = (tabTall[0] == tabTall[1]) && (tabTall[1] == tabTall[2]) && (tabTall[2] == tabTall[3])
         let boolDark = (tabDark[0] == tabDark[1]) && (tabDark[1] == tabDark[2]) && (tabDark[2] == tabDark[3])
@@ -286,7 +288,7 @@ struct Quarto : QuartoProtocol {
 
                 txt += "  | "
             }
-            else {
+            else { //Case vide
                 txt += "      | "
             }
         }

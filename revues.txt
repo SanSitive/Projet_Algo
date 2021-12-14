@@ -1,6 +1,11 @@
-Ligne 26 quartoProtocole : checkPiece -> Changement variable en Piece
-(Ligne 78 quartoProtocole : init -> ajout d'un paramètre value et de la spécification) peut-être parce qu'on ne connait pas la représentation des données
+Ligne 26 quartoProtocole : checkPiece -> Changement variable en Piece, et fonctoion un peu inutile
+
+Ligne 76 quartoProtocol, protocol de l'itérateur inutile, car ne peut pas être complet 
+(nécessite dans le init le type de la structure de données en paramètre)
+
 Ligne 6 associatedtype Iterator = QuartoIteratorProtocol -> associatedtype QuartoIterator = IteratorProtocol
 et du coup la fonction makeIterator
 
 Ligne 72 main : getDisplayOf  ajouter un return
+display(game: Quarto) main -> ajout d'un if/else dans le cas où il n'y pas de pièce sur la case à afficher, et ajout d'un espace
+lors de l'écriture d'une pièce
