@@ -35,17 +35,18 @@ struct Quarto : QuartoProtocol {
         if(checkCoordinates(coord:coord) && checkPiece(piece:piece)) {
             self.plateau[coord.0][coord.1] = piece
 
+            //Retirer la pièce posée de la liste des pièces dispos
             var i = 0
             var retire : Bool = false
-            while i<self.pieces.count && !retire {
+            while i<self.pieces.count && !retire { ////Pour tout k, 0<=k<i, piece n'appartient pas à pieces[0:i-1]
                 if let p = self.pieces[i] {
-                    if piecesEqual(p1:piece, p2:p) {
+                    if piecesEqual(p1:piece, p2:p) { //Si elles possèdent les mêmes carastéristiques
                         self.pieces[i] = nil
                         retire = true
                     }
                 }
                 i+=1
-            }
+            }//Arret : si i>=pieces.count ou retire (= pièce a été trouvé dans pieces, et a été remplacé par nil)
         }
     }
 
@@ -63,10 +64,10 @@ struct Quarto : QuartoProtocol {
         var res = false
         var i = 0
         var dispo = self.getAvailablePieces()
-        while i<dispo.count && !res {
+        while i<dispo.count && !res { //Pour tout k, 0<=k<i, piece n'appartient pas à dispo[0:i-1]
             res = piecesEqual(p1:piece, p2:dispo[i])
             i+=1
-        }
+        } //Arret : si i>=dispo.count ou res (= pièce appartient à la liste des pièces disponibles)
         return res
     }
 
@@ -99,6 +100,7 @@ struct Quarto : QuartoProtocol {
 	func horizontalAlign(coord: Coordinate) -> (Coordinate, Coordinate)? {
         var res : (Coordinate,Coordinate)? = nil
         let ligne = coord.0
+        //Tableaux de booléens permettant d'enregistrer les carastéristiques des pièces de chaque colonne de la ligne, pour ensuite vérifier s'ils ont au moins une infos en commun
         var tabTall : [Bool] = [Bool](repeating:false, count:4)
         var tabDark : [Bool] = [Bool](repeating:false, count:4)
         var tabFull : [Bool] = [Bool](repeating:false, count:4)
@@ -106,7 +108,7 @@ struct Quarto : QuartoProtocol {
 
         var c : Int = 0
         var caseVide = false
-        while c<4 && !caseVide{
+        while c<4 && !caseVide{ //Pour tout k, 0<=k<c, plateau[ligne][k] n'est pas vide
             if let p = self.plateau[ligne][c] {
                 tabTall[c] = p.tall
                 tabDark[c] = p.dark
@@ -117,7 +119,7 @@ struct Quarto : QuartoProtocol {
                 caseVide = true
             }
             c += 1
-        }
+        } //Arret : c >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
 
         if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
             res = (Coordinate(ligne, 0), Coordinate(ligne, 3))
@@ -139,7 +141,7 @@ struct Quarto : QuartoProtocol {
 
         var l : Int = 0
         var caseVide = false
-        while l<4 && !caseVide{
+        while l<4 && !caseVide{ //Pour tout k, 0<=k<l, plateau[k][colonne] n'est pas vide
             if let p = self.plateau[l][colonne] {
                 tabTall[l] = p.tall
                 tabDark[l] = p.dark
@@ -150,7 +152,7 @@ struct Quarto : QuartoProtocol {
                 caseVide = true
             }
             l += 1
-        }
+        } //Arret : l >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
 
         if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
             res = (Coordinate(0, colonne), Coordinate(3, colonne))
@@ -177,7 +179,7 @@ struct Quarto : QuartoProtocol {
 
             //Si sur la diagonale nord-ouest / sud-est
             if(coord.0 == coord.1) {
-                while i<4 && !caseVide{
+                while i<4 && !caseVide{ //Pour tout k, 0<=k<i, plateau[k][k] n'est pas vide
                     if let p = self.plateau[i][i] {
                         tabTall[i] = p.tall
                         tabDark[i] = p.dark
@@ -186,7 +188,7 @@ struct Quarto : QuartoProtocol {
                     }
                     else {
                         caseVide = true
-                    }
+                    } //Arret : i >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
                     i += 1
                 }
                 if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
@@ -195,7 +197,7 @@ struct Quarto : QuartoProtocol {
             }
             //Sinon sur la diagonale sud-ouest / nord-est
             else {
-                while i<4 && !caseVide{
+                while i<4 && !caseVide{ //Pour tout k, 0<=k<i, plateau[3-k][k] n'est pas vide
                     if let p = self.plateau[3-i][i] {
                         tabTall[i] = p.tall
                         tabDark[i] = p.dark
@@ -204,7 +206,7 @@ struct Quarto : QuartoProtocol {
                     }
                     else {
                         caseVide = true
-                    }
+                    } //Arret : i >= 4 ou si on a trouvé une case sans pièce (alignement de 4 pièce impossible)
                     i += 1
                 }
                 if !caseVide && existAlign(tabTall:tabTall, tabDark:tabDark, tabFull:tabFull, tabSquare:tabSquare){
@@ -282,10 +284,10 @@ struct Quarto : QuartoProtocol {
                 if piece.square { txt += "S"} //Square
                 else { txt += "R" } //Round
 
-                txt += " | "
+                txt += "  | "
             }
             else {
-                txt += "    | "
+                txt += "      | "
             }
         }
         return txt

@@ -73,7 +73,7 @@ protocol QuartoProtocol: Sequence {
 	func printBoard(elt: [Piece?]) -> String
 }
 
-/*//Itère sur une ligne de quarto
+//Itère sur une ligne de quarto
 protocol QuartoIteratorProtocol:IteratorProtocol, Sequence {
 	
 	init()
@@ -82,4 +82,4 @@ protocol QuartoIteratorProtocol:IteratorProtocol, Sequence {
 	//Pré : _
 	//Post : _
 	mutating func next() -> [Piece?]
-}*/
+}

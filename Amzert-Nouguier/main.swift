@@ -57,7 +57,7 @@ func display(game: Quarto) {
 		print("\(i) ", terminator: " | ")
 		for item in 0..<elt.count {
 			if let p = elt[item] {
-				print(getDisplayOf(piece: p), terminator: " | ")
+				print(getDisplayOf(piece: p), terminator: "  | ")
 			}
 			else {
 				print("     ", terminator: " | ")
